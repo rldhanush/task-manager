@@ -185,6 +185,7 @@ const updateTaskStatus = async (req, res) => {
     }catch (error) {
         res.status(500).json({ message: error.message });
     }
+
 };
 
 module.exports = { createTask, getTask, getAllTasks, deleteTask, updateTask, updateTaskStatus };

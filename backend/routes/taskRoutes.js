@@ -1,11 +1,12 @@
 const express = require('express');
 const { createTask, getTask, getAllTasks, deleteTask, updateTask, updateTaskStatus} = require('../controllers/taskController');
-const { body, param } = require('express-validator'); // Import param for route parameter validation
+const { body, param } = require('express-validator');
+
 const router = express.Router();
 
 // Create a new task
 router.post(
-    '/createTask', 
+    '/createTask',
     [
         body('title').not().isEmpty().trim().escape().withMessage('Title is required'),
         body('description').not().isEmpty().trim().escape().withMessage('Description is required'),
