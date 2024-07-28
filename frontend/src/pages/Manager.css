@@ -1,0 +1,33 @@
+/* Manager.css */
+.manager {
+  padding: 20px;
+}
+
+.add-task-btn {
+  display: block;
+  margin: 20px 0;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4a90e2;
+  color: white;
+  cursor: pointer;
+}
+
+.columns {
+  display: flex;
+  justify-content: center;
+  padding: 0 10px; /* To account for the 50px padding on both sides */
+  flex-wrap: wrap;
+}
+
+.column{
+  min-width: 350px;
+}
+
+@media (max-width: 768px) {
+  .columns {
+    flex-direction: column;
+  }
+}

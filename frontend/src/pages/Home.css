@@ -1,0 +1,30 @@
+.home-container {
+  text-align: center;
+  margin: 20px;
+}
+
+.tech-logos {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 20px 0;
+}
+
+.tech-logos img {
+  width: 400px;
+  height: auto;
+}
+
+.btn-login {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+  background-color: #0056b3;
+}
