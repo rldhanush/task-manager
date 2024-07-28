@@ -1,0 +1,75 @@
+/* src/components/Navbar.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3366ff;
+    padding: 10px 20px;
+}
+.navbar .logo {
+    font-size: 24px;
+    color: white;
+}
+.navbar .nav-links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+}
+.navbar .nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* src/pages/Auth.css */
+.auth-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+.auth-container h2 {
+    margin-bottom: 20px;
+}
+.auth-container form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+.auth-container form input {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.auth-container form button {
+    padding: 10px;
+    background-color: #3366ff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.auth-container form button:hover {
+    background-color: #264d99;
+}
+.auth-container .google-btn {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #db4437;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.auth-container .google-btn:hover {
+    background-color: #a33628;
+}
+.auth-container p {
+    margin-top: 20px;
+}
+.auth-container p a {
+    color: #3366ff;
+    text-decoration: none;
+}
+.auth-container p a:hover {
+    text-decoration: underline;
+}
