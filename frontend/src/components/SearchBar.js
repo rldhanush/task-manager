@@ -1,7 +1,20 @@
-import React from 'react';
+// src/components/SearchBar.js
+import React, { useState } from 'react';
 import './SearchBar.css';
 
 const SearchBar = ({ onSearch, onSort }) => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter' && searchTerm.length >= 5) {
+      onSearch(searchTerm);
+    }
+  };
+
   return (
     <div className="search-bar">
       <label htmlFor="search-input">Search:</label>
@@ -9,7 +22,9 @@ const SearchBar = ({ onSearch, onSort }) => {
         type="text"
         id="search-input"
         placeholder="Search..."
-        onChange={(e) => onSearch(e.target.value)}
+        value={searchTerm}
+        onChange={handleSearchChange}
+        onKeyPress={handleKeyPress}
       />
       <label htmlFor="sort-select">Sort By:</label>
       <select id="sort-select" onChange={(e) => onSort(e.target.value)}>

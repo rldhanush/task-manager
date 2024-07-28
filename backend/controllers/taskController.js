@@ -101,7 +101,9 @@ const deleteTask = async (req,res) => {
 const updateTask = async (req, res) => {
     const {taskId} = req.params;
     const {title, description, status} = req.body;
-
+    //console.log('title: ', title);
+    //console.log('description: ', description);
+    //console.log(taskId);
     //validate request
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -140,6 +142,7 @@ const updateTask = async (req, res) => {
         res.status(200).json({ message: 'Task updated successfully' });
 
     }catch (error) {
+        console.log(error.message)
         res.status(500).json({ message: error.message });
     }
 };

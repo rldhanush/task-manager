@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link} from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import './Auth.css';
 
 const Signup = () => {
@@ -12,6 +12,7 @@ const Signup = () => {
     });
 
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({
@@ -22,12 +23,37 @@ const Signup = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(formData);
         if (formData.password !== formData.confirmPassword) {
             setError('Passwords do not match');
             return;
         }
+        //console.log(formData);
+        const apiURL = 'http://localhost:5001/api/auth/signup';
         
+        try{
+            const response = await fetch(apiURL,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            if (response.status === 201) {
+                //const data = await response.json();
+                //console.log(data);
+                setError('');
+                navigate('/login');
+
+            }else{
+                const errorData = await response.json();
+                setError("Failed Signup process");
+                console.error(errorData.message);
+            }            
+
+        }catch (error) {
+            setError('An error occurred. Please try again.');
+            console.error("Fetch Error ",error);
+        }
     };
 
     return (

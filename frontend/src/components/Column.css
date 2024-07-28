@@ -21,7 +21,27 @@
 }
 
 .column-tasks {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.column-tasks {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Column.css */
+.column {
+  padding: 8px;
+  border: 1px solid lightgrey;
+  border-radius: 2px;
+  margin: 8px;
+  background-color: white;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
+
+
+

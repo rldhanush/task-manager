@@ -68,7 +68,6 @@ const login = async (req, res) => {
 
 
 //logout - remove token from 'tokens' collection in Firestore and use signOut(auth) to sign out user
-
 const logout = async (req, res) => {
     const token = req.headers.authorization && req.headers.authorization?.split(' ')[1];
     const errors = validationResult(req);
