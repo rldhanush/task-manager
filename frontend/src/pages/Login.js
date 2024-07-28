@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
 import './Auth.css';
 
 const Login = () => {
@@ -8,6 +8,9 @@ const Login = () => {
         password: ''
     });
 
+    const [error, setError] = useState('');
+    const navigate = useNavigate();
+
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -15,9 +18,37 @@ const Login = () => {
         });
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Add login logic here
+        //console.log(formData);
+        const baseURI = 'http://localhost:5001/api/auth/login';
+        try{
+            const response = await fetch(baseURI,{
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            if (response.status === 200){
+                const data = await response.json();
+                //console.log(data);
+
+                //store jwt token in local storage
+                localStorage.setItem('jwt_token', data.token);
+                //console.log("Local storage jwt",localStorage.getItem('jwt_token'));
+                setError('');
+                navigate('/manager');
+            }
+            else{
+                const errorData = await response.json();
+                setError("Failed Login process");
+                console.error(errorData.message);
+            }
+        }catch (error) {
+            setError('An error occurred. Please try again.');
+            console.error("Fetch Error ",error);
+        }
     };
 
     return (
@@ -29,6 +60,7 @@ const Login = () => {
                     name="email"
                     placeholder="Email"
                     value={formData.email}
+                    autoComplete='none'
                     onChange={handleChange}
                     required
                 />
@@ -36,12 +68,14 @@ const Login = () => {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    autoComplete='new-password'
                     value={formData.password}
                     onChange={handleChange}
                     required
                 />
                 <button type="submit">Login</button>
             </form>
+            {error && <div className="error-message">{error}</div>}
             <p>
                 Don't have an account? <Link to="/signup">Signup</Link>
             </p>
