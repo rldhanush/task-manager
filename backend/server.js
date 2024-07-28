@@ -1,9 +1,11 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const bodyParser = require('body-parser');
+
 const authRoutes = require('./routes/authRoutes');
 const taskRoutes = require('./routes/taskRoutes');
-const cors = require('cors');
+const authenticate = require('./middlewares/authenticator');
 
 const app = express();
 
@@ -13,7 +15,7 @@ app.use(cors());
 //Authentication routes
 app.use('/api/auth', authRoutes);
 //Tasks routes
-app.use('/api/tasks', taskRoutes);
+app.use('/api/tasks',authenticate ,taskRoutes);
 
 
 const port = process.env.PORT || 5001;

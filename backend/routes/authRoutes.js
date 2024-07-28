@@ -31,7 +31,7 @@ router.post(
     login
 );
 
-// Logout route
-router.get('/logout', logout);
+// Logout route - if header does not contain token, return 401 
+router.post('/logout', logout);
 
 module.exports = router;
