@@ -39,3 +39,8 @@
 .auth-container .link:hover {
     text-decoration: underline;
 }
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link} from 'react-router-dom';
 import './Auth.css';
 
 const Signup = () => {
@@ -11,8 +11,7 @@ const Signup = () => {
         confirmPassword: ''
     });
 
-    const [, setError] = useState('');
-    const navigate = useNavigate();
+    const [error, setError] = useState('');
 
     const handleChange = (e) => {
         setFormData({
@@ -28,29 +27,7 @@ const Signup = () => {
             setError('Passwords do not match');
             return;
         }
-        try{
-            const apiURL = 'http://localhost:5001/api/auth/signup'
-            console.log(apiURL);
-            
-            const response = await fetch(apiURL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-            
-            if (response === 201){
-                console.log('Signup successful');
-                navigate('/login');
-            }
-            if (response === 400){
-                console.log('Signup failed');
-                setError('Signup Failed');
-            }
-        }catch(error){
-            setError(error.response?.data?.message || 'An error occurred');
-        }
+        
     };
 
     return (
@@ -77,6 +54,7 @@ const Signup = () => {
                     type="email"
                     name="email"
                     placeholder="Email"
+                    autoCapitalize='none'
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -85,6 +63,7 @@ const Signup = () => {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    autoComplete='new-password'
                     value={formData.password}
                     onChange={handleChange}
                     required
@@ -99,6 +78,7 @@ const Signup = () => {
                 />
                 <button type="submit">Signup</button>
             </form>
+            {error && <div className="error-message">{error}</div>}
             <p>
                 Already have an account? <Link to="/login">Login</Link>
             </p>
